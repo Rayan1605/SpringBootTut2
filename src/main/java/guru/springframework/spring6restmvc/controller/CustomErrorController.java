@@ -1,10 +1,8 @@
 package guru.springframework.spring6restmvc.controller;
 
-import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.TransactionException;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -37,7 +35,7 @@ public class CustomErrorController {
 
         if (exception.getCause().getCause() instanceof ConstraintViolationException){
             ConstraintViolationException ve = (ConstraintViolationException) exception.getCause().getCause();
-            List errors = ve.getConstraintViolations().stream()
+            List<Map<String, String>> errors = ve.getConstraintViolations().stream()
                     .map(constraintViolation -> {
                         Map<String,String> errMap = new HashMap<>();
                         errMap.put(constraintViolation.getPropertyPath().toString()
