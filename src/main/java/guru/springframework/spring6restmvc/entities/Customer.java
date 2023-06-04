@@ -24,6 +24,13 @@ public class Customer {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @JdbcTypeCode(SqlTypes.CHAR)//Tell hibernate to store UUID as it characterValue which is a string
     //If you don't put this in it will send it as a binary value which is not what we want
+    //Hibernate uses a binary representation for storing UUID values by
+    // default because the java.util.UUID type in Java is typically mapped to a
+    // binary data type in databases.
+
+    //When I used @JdbcTypeCode(SqlTypes.CHAR) in your code,
+    // I explicitly instructed Hibernate to store the UUID as a
+    // character value (string) instead of the default binary representation.
     @Column(length = 36, columnDefinition = "varchar(36)", updatable = false, nullable = false)
     private UUID id;
     private String name;
