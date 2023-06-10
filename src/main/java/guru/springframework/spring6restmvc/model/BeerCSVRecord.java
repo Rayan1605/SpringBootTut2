@@ -30,9 +30,10 @@ public class BeerCSVRecord {
     private Float ounces;
     @CsvBindByName
     private String style2;
-    @CsvBindByName(column = "count.y")
+    @CsvBindByName(column = "count.y")//If the name does not match then do this and put the exact
+    // same name as the column name in the CSV file
     private String count_y;
-    @CsvBindByName
+    @CsvBindByName // if the same then all you can do this
     private String city;
     @CsvBindByName
     private String state;
