@@ -40,12 +40,11 @@ public class BootstrapData implements CommandLineRunner {
 
     private void loadCsvData() throws FileNotFoundException {
         if (beerRepository.count() < 10){
-            File file = ResourceUtils.getFile("classpath:csvdata/beers.csv");
-
-            List<BeerCSVRecord> recs = beerCsvService.convertCSV(file);
-
-            recs.forEach(beerCSVRecord -> {
-                BeerStyle beerStyle = switch (beerCSVRecord.getStyle()) {
+            File file = ResourceUtils.getFile("classpath:csvdata/beers.csv");//getting the file
+            List<BeerCSVRecord> recs = beerCsvService.convertCSV(file);// getting the list of records from the file
+            recs.forEach(beerCSVRecord -> { // foreach so every time we get a record we save it to the database
+                BeerStyle beerStyle = switch (beerCSVRecord.getStyle()) { // this is a
+                    //switch to set the Beerstyle
                     case "American Pale Lager" -> BeerStyle.LAGER;
                     case "American Pale Ale (APA)", "American Black Ale", "Belgian Dark Ale", "American Blonde Ale" ->
                             BeerStyle.ALE;
@@ -57,9 +56,10 @@ public class BootstrapData implements CommandLineRunner {
                     case "English Pale Ale" -> BeerStyle.PALE_ALE;
                     default -> BeerStyle.PILSNER;
                 };
-
+//after that we create a new beer object  and put it in the record
                 beerRepository.save(Beer.builder()
-                        .beerName(StringUtils.abbreviate(beerCSVRecord.getBeer(), 50))
+                        .beerName(StringUtils.abbreviate(beerCSVRecord.getBeer(), 50))//to make sure that the beer name is
+                        // not more than 50 character
                         .beerStyle(beerStyle)
                         .price(BigDecimal.TEN)
                         .upc(beerCSVRecord.getRow().toString())
