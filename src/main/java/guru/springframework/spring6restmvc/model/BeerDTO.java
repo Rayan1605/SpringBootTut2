@@ -21,7 +21,7 @@ public class BeerDTO {
 
     @NotBlank
     @NotNull
-    @Size(min = 3, max = 100) // this mean min character 3 and max is 100
+    @Size(min = 0, max = 100) // max is 100
     private String beerName;
 
     @NotNull
