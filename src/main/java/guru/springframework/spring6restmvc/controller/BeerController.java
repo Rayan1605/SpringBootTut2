@@ -70,7 +70,7 @@ public class BeerController {
         // http://localhost:8080/api/v1/beer?beerName=Beer1 and the after equal is what the beerName will be
         //since spring will be looking for beerName in the httt request
         //and we are saying that we are not required to have a beerName in the request
-        //you need to ovverride it because automatically it is true
+        //you need to override it because automatically it is true
         return beerService.listBeers();
     }
 
