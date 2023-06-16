@@ -20,7 +20,8 @@ class BeerRepositoryTest {
 
     @Test
     void testGetBeerListByName(){
-        //This is a sql convention and the %  are wildcard
+        //This is a sql convention and the %  are wildcard and the wildcard allows  us to search for
+        // anything that contains IPA and it will put in that
         List<Beer> list = beerRepository.findAllByBeerNameIsLikeIgnoreCase("%IPA%");
     }
     @Test
