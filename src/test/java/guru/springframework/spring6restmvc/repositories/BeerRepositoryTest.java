@@ -20,6 +20,7 @@ class BeerRepositoryTest {
 
     @Test
     void testGetBeerListByName(){
+        //This is a sql
         List<Beer> list = beerRepository.findAllByBeerNameIsLikeIgnoreCase("%IPA%");
     }
     @Test
