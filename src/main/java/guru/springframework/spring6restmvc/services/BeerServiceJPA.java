@@ -46,7 +46,7 @@ beerList = listBeersByName(beerName);
     }
 
     List<Beer> listBeersByName(String beerName){
-        return new ArrayList<>();
+        return beerRepository.findAllByBeerNameIsLikeIgnoreCase(beerName);
     }
 
     @Override
