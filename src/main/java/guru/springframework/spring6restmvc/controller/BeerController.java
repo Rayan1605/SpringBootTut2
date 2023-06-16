@@ -66,8 +66,12 @@ public class BeerController {
     }
 
     @GetMapping(value = BEER_PATH)
-    public List<BeerDTO> listBeers(){
-        return beerService.listBeers();
+    public List<BeerDTO> listBeers(@RequestParam(required = false) String beerName){ // so this  will be
+        // http://localhost:8080/api/v1/beer?beerName=Beer1 and the after equal is what the beerName will be
+        //since spring will be looking for beerName in the httt request
+        //and we are saying that we are not required to have a beerName in the request
+        //you need to override it because automatically it is true
+        return beerService.listBeers(beerName);
     }
 
 

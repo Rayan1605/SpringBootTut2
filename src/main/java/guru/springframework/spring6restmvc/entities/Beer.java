@@ -33,7 +33,7 @@ public class Beer {
     @Version
     private Integer version;
     @NotNull
-    @Size(min = 3, max = 100) // this mean min character 3 and max is 100
+    @Size(min = 1, max = 100) // this mean min character 3 and max is 100
     @NotBlank
     private String beerName;
     @NotNull
