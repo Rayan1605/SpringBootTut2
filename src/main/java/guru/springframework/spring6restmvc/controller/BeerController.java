@@ -66,7 +66,9 @@ public class BeerController {
     }
 
     @GetMapping(value = BEER_PATH)
-    public List<BeerDTO> listBeers(){
+    public List<BeerDTO> listBeers(@RequestParam String beerName){ // so this  will be
+        // http://localhost:8080/api/v1/beer?beerName=Beer1 and the after equal is what the beerName will be
+        //since spring will be looking for beerName in the httt request
         return beerService.listBeers();
     }
 
