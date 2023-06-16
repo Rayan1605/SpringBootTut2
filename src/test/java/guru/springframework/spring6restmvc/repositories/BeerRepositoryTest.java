@@ -20,7 +20,7 @@ class BeerRepositoryTest {
 
     @Test
     void testGetBeerListByName(){
-        List<Beer> list = beerRepository.findAllByBeerNameIsLikeIgnoreCase("IPA");
+        List<Beer> list = beerRepository.findAllByBeerNameIsLikeIgnoreCase("%IPA%");
     }
     @Test
     void testSaveBeer() {
