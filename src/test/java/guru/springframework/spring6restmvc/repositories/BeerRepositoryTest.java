@@ -21,7 +21,9 @@ class BeerRepositoryTest {
     @Test
     void testGetBeerListByName(){
         //This is a sql convention and the %  are wildcard and the wildcard allows  us to search for
-        // anything that contains IPA and it will put in that
+        // anything that contains IPA and it will put in that wildcard
+        //also that findAllByBeerNameIsLikeIgnoreCase is a jpa method that is created by spring data jpa
+        //we configured that in our BeerRepository interface
         List<Beer> list = beerRepository.findAllByBeerNameIsLikeIgnoreCase("%IPA%");
     }
     @Test
