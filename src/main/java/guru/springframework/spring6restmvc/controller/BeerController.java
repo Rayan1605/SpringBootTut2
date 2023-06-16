@@ -71,7 +71,7 @@ public class BeerController {
         //since spring will be looking for beerName in the httt request
         //and we are saying that we are not required to have a beerName in the request
         //you need to override it because automatically it is true
-        return beerService.listBeers();
+        return beerService.listBeers(null);
     }
 
 
