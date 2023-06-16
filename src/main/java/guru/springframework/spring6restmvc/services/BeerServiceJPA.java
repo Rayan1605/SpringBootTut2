@@ -47,7 +47,7 @@ beerList = listBeersByName(beerName);
 
    public List<Beer> listBeersByName(String beerName){
         // you need to add in the wildcard here for the like query to work properly
-        return beerRepository.findAllByBeerNameIsLikeIgnoreCase(beerName);
+        return beerRepository.findAllByBeerNameIsLikeIgnoreCase("%" +beerName + "%");
     }
 
     @Override
