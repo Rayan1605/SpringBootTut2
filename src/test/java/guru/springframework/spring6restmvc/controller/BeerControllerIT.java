@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.WebApplicationContext;
@@ -65,16 +66,16 @@ class BeerControllerIT {
         });
     }
 
-    @Test //this is testing the query parameters - > When a client sends an HTTP GET
+     //this is testing the query parameters - > When a client sends an HTTP GET
         // request to a Spring MVC application, the query parameters are automatically extracted and
         // mapped to the corresponding controller method parameters.
 
-
+    @Test
     void tesListBeersbbyName() throws Exception {
         mockMvc.perform(get(BeerController.BEER_PATH).
-                        queryParam("beerName","IPA"))
-                .andExpect(status().isOk()).
-                andExpect((ResultMatcher) jsonPath("$.size",is(100)));
+                        queryParam("beerName", "IPA"))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.size()").value(100));
     }
 
     @Rollback
