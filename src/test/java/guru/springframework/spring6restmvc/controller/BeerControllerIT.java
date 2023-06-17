@@ -147,7 +147,7 @@ class BeerControllerIT {
         UUID savedUUID = UUID.fromString(locationUUID[4]);
 
         Beer beer = beerRepository.findById(savedUUID).get();
-        assertThat(beer).isNotNull();
+        assertThat(beer).isNotNull();b
     }
 
     @Test
