@@ -44,7 +44,11 @@ public class BeerServiceJPA implements BeerService {
         }
         else beerList = beerRepository.findAll();
 
-
+if (showInventory != null && !showInventory){
+    beerList.forEach(beer -> {
+        beer.setQuantityOnHand(null);
+    });
+}
             return beerList
                     .stream()
                     .map(beerMapper::beerToBeerDto)
@@ -54,7 +58,7 @@ public class BeerServiceJPA implements BeerService {
 
     private List<Beer> listBeersByNameAndBeerStyle(String beerName, BeerStyle beerStyle) {
 
-
+   return beerRepository.findAllByBeerNameIsLikeIgnoreCaseAndBeerStyle("%" +beerName + "%", beerStyle);
     }
 
     private List<Beer> ListBeerByStyle(BeerStyle beerStyle) {
