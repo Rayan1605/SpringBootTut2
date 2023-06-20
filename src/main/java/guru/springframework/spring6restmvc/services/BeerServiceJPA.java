@@ -7,6 +7,7 @@ import guru.springframework.spring6restmvc.model.BeerStyle;
 import guru.springframework.spring6restmvc.repositories.BeerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -25,11 +26,14 @@ import java.util.stream.Collectors;
 public class BeerServiceJPA implements BeerService {
     private final BeerRepository beerRepository;
     private final BeerMapper beerMapper;
-
+    private final static int DEFAULT_PAGE_NUMBER = 0;
+    private final static int DEFAULT_PAGE_SIZE = 25;
     @Override
     public List<BeerDTO> listBeers(String beerName, BeerStyle beerStyle, Boolean showInventory, Integer pageNumber, Integer pageSize) {
 
         List<Beer> beerList;
+        PageRequest pageRequest = buildPageRequest(pageNumber, pageSize);
+
 
         if (StringUtils.hasText(beerName) && beerStyle==null){
                beerList =  listBeersByName(beerName);
@@ -54,6 +58,24 @@ if (showInventory != null && !showInventory){
                     .map(beerMapper::beerToBeerDto)
                     .collect(Collectors.toList());
 
+    }
+
+    public PageRequest buildPageRequest(Integer pageNumber, Integer pageSize) {
+        int querypageNumber;
+        int querypageSize;
+
+        if (pageNumber != null&& pageNumber > 0) {
+            querypageNumber = pageNumber - 1;
+        } else {
+            querypageNumber = DEFAULT_PAGE_NUMBER;
+        }
+     if (pageSize == null){
+         querypageSize = DEFAULT_PAGE_SIZE;
+     }
+     else{
+            querypageSize = pageSize;
+     }
+     return PageRequest.of(querypageNumber, querypageSize);
     }
 
     private List<Beer> listBeersByNameAndBeerStyle(String beerName, BeerStyle beerStyle) {
