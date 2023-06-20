@@ -71,7 +71,8 @@ public class BeerController {
     public List<BeerDTO> listBeers(@RequestParam(required = false) String beerName,
                                    @RequestParam(required = false) BeerStyle beerStyle,
                                    @RequestParam(required = false) boolean showinventory,
-                                   @RequestParam(required = false) Integer PageNumber,@RequestParam(required = false) Integer pageSize){
+                                   @RequestParam(required = false) Integer PageNumber,
+                                   @RequestParam(required = false) Integer pageSize){
         // so this  will be
         // http://localhost:8080/api/v1/beer?beerName=Beer1 and the after equal is what the beerName will be
         //since spring will be looking for beerName in the httt request
