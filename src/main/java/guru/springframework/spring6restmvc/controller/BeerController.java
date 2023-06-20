@@ -5,6 +5,7 @@ import guru.springframework.spring6restmvc.model.BeerStyle;
 import guru.springframework.spring6restmvc.services.BeerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -76,7 +77,7 @@ public class BeerController {
         //since spring will be looking for beerName in the httt request
         //and we are saying that we are not required to have a beerName in the request
         //you need to override it because automatically it is true
-        return beerService.listBeers(beerName,beerStyle, showinventory, 1, 25);
+        return beerService.listBeers(beerName,beerStyle, showinventory, PageNumber, pageSize);
     }
 
 
