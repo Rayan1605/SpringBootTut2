@@ -11,8 +11,11 @@ import java.util.UUID;
  * Created by jt, Spring Framework Guru.
  */
 public interface BeerRepository extends JpaRepository<Beer, UUID> {
-
+//Rememeber that everything below will be created automatically by Spring Data JPA at runTime
+    //So no need to create any implementation class for this interface
     List<Beer> findAllByBeerNameIsLikeIgnoreCase(String beerName);
 
     List<Beer> findAllByBeerStyle(BeerStyle beerStyle);
+
+List<Beer> findAllByBeerNameIsLikeIgnoreCaseAndBeerStyle(String beerName, BeerStyle beerStyle);
 }

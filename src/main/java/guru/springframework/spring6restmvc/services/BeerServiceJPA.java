@@ -53,6 +53,8 @@ public class BeerServiceJPA implements BeerService {
     }
 
     private List<Beer> listBeersByNameAndBeerStyle(String beerName, BeerStyle beerStyle) {
+
+
     }
 
     private List<Beer> ListBeerByStyle(BeerStyle beerStyle) {
