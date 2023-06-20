@@ -27,7 +27,7 @@ public class BeerServiceJPA implements BeerService {
     private final BeerMapper beerMapper;
 
     @Override
-    public List<BeerDTO> listBeers(String beerName, BeerStyle beerStyle) {
+    public List<BeerDTO> listBeers(String beerName, BeerStyle beerStyle, Boolean showInventory) {
 
         List<Beer> beerList;
 
@@ -38,6 +38,9 @@ public class BeerServiceJPA implements BeerService {
       else if (!StringUtils.hasText(beerName) && beerStyle!=null){
             beerList = ListBeerByStyle(beerStyle);
 
+        }    else if (StringUtils.hasText(beerName) && beerStyle!=null){
+            beerList = listBeersByNameAndBeerStyle(beerName, beerStyle);
+
         }
         else beerList = beerRepository.findAll();
 
@@ -47,6 +50,9 @@ public class BeerServiceJPA implements BeerService {
                     .map(beerMapper::beerToBeerDto)
                     .collect(Collectors.toList());
 
+    }
+
+    private List<Beer> listBeersByNameAndBeerStyle(String beerName, BeerStyle beerStyle) {
     }
 
     private List<Beer> ListBeerByStyle(BeerStyle beerStyle) {
