@@ -7,6 +7,7 @@ import guru.springframework.spring6restmvc.model.BeerStyle;
 import guru.springframework.spring6restmvc.repositories.BeerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -29,7 +30,7 @@ public class BeerServiceJPA implements BeerService {
     private final static int DEFAULT_PAGE_NUMBER = 0;
     private final static int DEFAULT_PAGE_SIZE = 25;
     @Override
-    public List<BeerDTO> listBeers(String beerName, BeerStyle beerStyle, Boolean showInventory, Integer pageNumber, Integer pageSize) {
+    public Page<BeerDTO> listBeers(String beerName, BeerStyle beerStyle, Boolean showInventory, Integer pageNumber, Integer pageSize) {
 
         List<Beer> beerList;
         PageRequest pageRequest = buildPageRequest(pageNumber, pageSize);
@@ -83,16 +84,16 @@ if (showInventory != null && !showInventory){
 
     private List<Beer> listBeersByNameAndBeerStyle(String beerName, BeerStyle beerStyle) {
 
-   return beerRepository.findAllByBeerNameIsLikeIgnoreCaseAndBeerStyle("%" +beerName + "%", beerStyle);
+   return beerRepository.findAllByBeerNameIsLikeIgnoreCaseAndBeerStyle("%" +beerName + "%", beerStyle, null);
     }
 
     private List<Beer> ListBeerByStyle(BeerStyle beerStyle) {
-        return beerRepository.findAllByBeerStyle(beerStyle);
+        return beerRepository.findAllByBeerStyle(beerStyle, null);
     }
 
     public List<Beer> listBeersByName(String beerName){
         // you need to add in the wildcard here for the like query to work properly
-        return beerRepository.findAllByBeerNameIsLikeIgnoreCase("%" +beerName + "%");
+        return beerRepository.findAllByBeerNameIsLikeIgnoreCase("%" +beerName + "%", null);
     }
 
     @Override

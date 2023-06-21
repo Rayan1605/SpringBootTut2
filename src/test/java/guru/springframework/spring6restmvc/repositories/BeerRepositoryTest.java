@@ -30,7 +30,7 @@ class BeerRepositoryTest {
         // anything that contains IPA and it will put in that wildcard
         //also that findAllByBeerNameIsLikeIgnoreCase is a jpa method that is created by spring data jpa
         //we configured that in our BeerRepository interface
-        List<Beer> list = beerRepository.findAllByBeerNameIsLikeIgnoreCase("%IPA%");
+        List<Beer> list = beerRepository.findAllByBeerNameIsLikeIgnoreCase("%IPA%", null);
 
          assertThat(list.size()).isEqualTo(30);
     }
