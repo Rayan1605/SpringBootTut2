@@ -73,6 +73,9 @@ if (showInventory != null && !showInventory){
          querypageSize = DEFAULT_PAGE_SIZE;
      }
      else{
+         if (pageSize> 1000){
+             querypageSize = 1000; // this is the max page size
+         }
             querypageSize = pageSize;
      }
      return PageRequest.of(querypageNumber, querypageSize);
