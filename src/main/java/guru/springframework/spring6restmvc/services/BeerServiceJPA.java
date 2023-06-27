@@ -35,7 +35,6 @@ public class BeerServiceJPA implements BeerService {
     public Page<BeerDTO> listBeers(String beerName, BeerStyle beerStyle, Boolean showInventory,
                                    Integer pageNumber, Integer pageSize) {
 
-
         PageRequest pageRequest = buildPageRequest(pageNumber, pageSize);
 
         Page<Beer> beerPage;
