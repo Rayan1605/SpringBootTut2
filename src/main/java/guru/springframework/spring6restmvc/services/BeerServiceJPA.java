@@ -34,7 +34,7 @@ public class BeerServiceJPA implements BeerService {
     @Override
     public Page<BeerDTO> listBeers(String beerName, BeerStyle beerStyle, Boolean showInventory,
                                    Integer pageNumber, Integer pageSize) {
-yt
+
         PageRequest pageRequest = buildPageRequest(pageNumber, pageSize);
 
         Page<Beer> beerPage;
