@@ -31,7 +31,7 @@ public class BeerOrder {
 private Long version;
     @CreationTimestamp
     @Column(updatable = false)// so you can't change the created date
-    private Timestamp createdDate;
+    private Timestamp created_date;
 
     @UpdateTimestamp // so you can't change the last modified date and hibernate will take care of
     // it
