@@ -41,6 +41,10 @@ private Long version;
         return this.id == null;
     }
     private String customerRef;
+    @ManyToOne // many orders to one customer
+    // Then go to the Customer class and add the @OneToMany(mappedBy = "customer") annotation
+    //    private Set<BeerOrder> beerOrders; Since there can be many orders to one customer
+   private Customer customer;
 
 
 }
