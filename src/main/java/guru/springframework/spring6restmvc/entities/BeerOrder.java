@@ -1,0 +1,46 @@
+package guru.springframework.spring6restmvc.entities;
+
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.type.SqlTypes;
+
+import java.sql.Timestamp;
+import java.util.UUID;
+
+@Getter
+@Setter
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class BeerOrder {
+    @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID", //This is the name of the generator
+            strategy = "org.hibernate.id.UUIDGenerator" //This is the strategy of the generator
+    )
+    @JdbcTypeCode(SqlTypes.CHAR)
+    @Column(length = 36, columnDefinition = "varchar", updatable = false, nullable = false)
+    private UUID id;
+    @Version
+private Long version;
+    @CreationTimestamp
+    @Column(updatable = false)// so you can't change the created date
+    private Timestamp createdDate;
+
+    @UpdateTimestamp // so you can't change the last modified date and hibernate will take care of
+    // it
+    private Timestamp lastModifiedDate;
+
+    public boolean isNew() {
+        return this.id == null;
+    }
+    private String customerRef;
+
+
+}
