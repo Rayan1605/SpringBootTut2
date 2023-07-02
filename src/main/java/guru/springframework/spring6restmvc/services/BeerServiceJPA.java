@@ -86,15 +86,15 @@ public class BeerServiceJPA implements BeerService {
 
     private Page<Beer> listBeersByNameAndStyle(String beerName, BeerStyle beerStyle, Pageable pageable) {
         return beerRepository.findAllByBeerNameIsLikeIgnoreCaseAndBeerStyle("%" + beerName + "%",
-                beerStyle, (java.awt.print.Pageable) pageable);
+                beerStyle, pageable);
     }
 
-    public Page<Beer> listBeersByStyle(BeerStyle beerStyle, java.awt.print.Pageable pageable) {
+    public Page<Beer> listBeersByStyle(BeerStyle beerStyle,Pageable pageable){
         return beerRepository.findAllByBeerStyle(beerStyle, pageable);
     }
 
     public Page<Beer> listBeersByName(String beerName, Pageable pageable){
-        return beerRepository.findAllByBeerNameIsLikeIgnoreCase("%" + beerName + "%", (java.awt.print.Pageable) pageable);
+        return beerRepository.findAllByBeerNameIsLikeIgnoreCase("%" + beerName + "%", pageable);
     }
 
     @Override
