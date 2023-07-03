@@ -33,7 +33,7 @@ private Long version;
     @Column(updatable = false)// so you can't change the created date
     private Timestamp created_date;
 
-    @UpdateTimestamp // so you can't change the last modified date and hibernate will take care of
+    @UpdateTimestamp// so you can't change the last modified date and hibernate will take care of
     // it
     private Timestamp lastModifiedDate;
 
