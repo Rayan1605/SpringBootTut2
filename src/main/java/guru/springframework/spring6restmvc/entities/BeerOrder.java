@@ -16,9 +16,19 @@ import java.util.UUID;
 @Setter
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
+
 @Builder
 public class BeerOrder {
+    public BeerOrder(UUID id, Long version, Timestamp created_date, Timestamp lastModifiedDate, String customerRef, Customer customer, Set<BeerOrderLine> beerOrderLineSet) {
+        this.id = id;
+        this.version = version;
+        this.created_date = created_date;
+        this.lastModifiedDate = lastModifiedDate;
+        this.customerRef = customerRef;
+        this.SetCustomer(customer);
+        this.beerOrderLineSet = beerOrderLineSet;
+    }
+
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(
@@ -46,6 +56,11 @@ private Long version;
     // Then go to the Customer class and add the @OneToMany(mappedBy = "customer") annotation
     //    private Set<BeerOrder> beerOrders; Since there can be many orders to one customer
    private Customer customer;
+
+    public void SetCustomer(Customer customer){
+        this.customer=customer;
+        customer.getBeerOrders().add(this); // the "this" is referring to the current beer order
+    }
 @OneToMany(mappedBy = "beerOrder") // one order to many order lines
     private Set<BeerOrderLine> beerOrderLineSet;
 
