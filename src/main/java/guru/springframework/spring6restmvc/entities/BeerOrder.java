@@ -9,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.type.SqlTypes;
 
 import java.sql.Timestamp;
+import java.util.Set;
 import java.util.UUID;
 
 @Getter
@@ -45,6 +46,9 @@ private Long version;
     // Then go to the Customer class and add the @OneToMany(mappedBy = "customer") annotation
     //    private Set<BeerOrder> beerOrders; Since there can be many orders to one customer
    private Customer customer;
+@OneToMany(mappedBy = "beerOrder") // one order to many order lines
+    private Set<BeerOrderLine> beerOrderLineSet;
+
 
 
 }
