@@ -47,4 +47,7 @@ public class BeerOrderLine {
     private Integer quantityAllocated = 0;
 @ManyToOne// this mean many order lines to one order
     private BeerOrder beerOrder;
+  @ManyToOne// this mean many order lines to one beer
+  private Beer beer;
+
 }

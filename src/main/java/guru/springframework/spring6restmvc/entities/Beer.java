@@ -11,6 +11,7 @@ import org.hibernate.type.SqlTypes;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -44,6 +45,10 @@ public class Beer {
     private Integer quantityOnHand;
     @NotNull
     private BigDecimal price;
+
+    @OneToMany(mappedBy = "beer")//this mean one beer to many order lines
+    private Set<BeerOrderLine> beerOrderLines;
+
     @CreationTimestamp // Hibernate will set this value when we create a new record automatically
     private LocalDateTime createdDate;
 @UpdateTimestamp
