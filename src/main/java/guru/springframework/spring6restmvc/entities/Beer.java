@@ -49,6 +49,11 @@ public class Beer {
     @OneToMany(mappedBy = "beer")//this mean one beer to many order lines
     private Set<BeerOrderLine> beerOrderLines;
 
+    @ManyToMany
+    @JoinTable(name = "beer_category", joinColumns = @JoinColumn(name = "beer_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories;
+
     @CreationTimestamp // Hibernate will set this value when we create a new record automatically
     private LocalDateTime createdDate;
 @UpdateTimestamp
