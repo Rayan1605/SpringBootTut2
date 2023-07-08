@@ -55,6 +55,11 @@ private Long version;
     public boolean isNew() {
         return this.id == null;
     }
+
+    public void setBeerOrderShipment(BeerOrderShipment beerOrderShipment) {
+        this.beerOrderShipment = beerOrderShipment;
+        beerOrderShipment.setBeerOrder(this);
+    }
     private String customerRef;
     @ManyToOne // many orders to one customer
     // Then go to the Customer class and add the @OneToMany(mappedBy = "customer") annotation
