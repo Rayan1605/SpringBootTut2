@@ -30,6 +30,10 @@ class CategoryRepositoryTest {
         Category savedCat = categoryRepository.save(Category.builder().
                 description("Ales")
                 .build());
+
+        testbeer.addCategory(savedCat);
+        Beer savedBeer = beerRepository.save(testbeer);
+        assertNotNull(savedBeer);
     }
 
 
