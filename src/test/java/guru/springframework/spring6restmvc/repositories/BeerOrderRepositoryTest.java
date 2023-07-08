@@ -34,7 +34,8 @@ testBeer = beerRepository.findAll().get(0);
     @Test
     void testBeerOrder(){
 BeerOrder beerOrder = BeerOrder.builder().customerRef("Test Order").customer(testCustomer)
-        .beerOrderShipment(BeerOrderShipment.builder().trackingNumber("12345r").build()).build();
+        .beerOrderShipment(BeerOrderShipment.builder().
+                trackingNumber("12345r").build()).build();
 
 BeerOrder savedBeerOrder = beerOrderRepository.saveAndFlush(beerOrder);
 //his method is responsible for saving changes made to an object and immediately flushing them to the underlying database.
