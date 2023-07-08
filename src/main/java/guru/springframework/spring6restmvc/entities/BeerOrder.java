@@ -26,7 +26,7 @@ public class BeerOrder {
         this.created_date = created_date;
         this.lastModifiedDate = lastModifiedDate;
         this.customerRef = customerRef;
-        this.beerOrderShipment = beerOrderShipment;
+        this.setBeerOrderShipment(beerOrderShipment);
         this.SetCustomer(customer); // so we can ovveride because we are calling the builder method
         // it will use all args constructor so we override to make sure it uses our
         // setCustomer method instead of the constructor
