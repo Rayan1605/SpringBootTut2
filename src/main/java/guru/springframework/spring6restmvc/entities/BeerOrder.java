@@ -19,12 +19,14 @@ import java.util.UUID;
 
 @Builder
 public class BeerOrder {
-    public BeerOrder(UUID id, Long version, Timestamp created_date, Timestamp lastModifiedDate, String customerRef, Customer customer, Set<BeerOrderLine> beerOrderLineSet) {
+    public BeerOrder(UUID id, Long version, Timestamp created_date, Timestamp lastModifiedDate, String customerRef, Customer customer, Set<BeerOrderLine> beerOrderLineSet,
+                     BeerOrderShipment beerOrderShipment) {
         this.id = id;
         this.version = version;
         this.created_date = created_date;
         this.lastModifiedDate = lastModifiedDate;
         this.customerRef = customerRef;
+        this.beerOrderShipment = beerOrderShipment;
         this.SetCustomer(customer); // so we can ovveride because we are calling the builder method
         // it will use all args constructor so we override to make sure it uses our
         // setCustomer method instead of the constructor
@@ -66,6 +68,8 @@ private Long version;
 @OneToMany(mappedBy = "beerOrder") // one order to many order lines
     private Set<BeerOrderLine> beerOrderLineSet;
 
+    @OneToOne
+    private BeerOrderShipment beerOrderShipment;
 
 
 }
