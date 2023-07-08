@@ -11,6 +11,7 @@ import org.hibernate.type.SqlTypes;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -48,11 +49,22 @@ public class Beer {
 
     @OneToMany(mappedBy = "beer")//this mean one beer to many order lines
     private Set<BeerOrderLine> beerOrderLines;
-
+    @Builder.Default
     @ManyToMany
     @JoinTable(name = "beer_category", joinColumns = @JoinColumn(name = "beer_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
-    private Set<Category> categories;
+    private Set<Category> categories = new HashSet<>();
+
+    public void addCategory(Category category) {
+        categories.add(category);
+        category.getBeers().add(this);// this refer to the current beer
+    }
+    public void removeCategory(Category category) {
+
+   this.categories.remove(category);
+   category.getBeers().remove(category);
+    }
+
 
     @CreationTimestamp // Hibernate will set this value when we create a new record automatically
     private LocalDateTime createdDate;
