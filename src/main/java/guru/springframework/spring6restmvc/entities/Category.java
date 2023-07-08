@@ -1,10 +1,7 @@
 package guru.springframework.spring6restmvc.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.JdbcTypeCode;
@@ -12,6 +9,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.type.SqlTypes;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -19,6 +17,7 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
 public class Category {
 
@@ -40,12 +39,12 @@ public class Category {
     private Timestamp lastModifiedDate;
 
     private String description;
-
+@Builder.Default
     @ManyToMany
     @JoinTable(name = "beer_category",
             joinColumns = @JoinColumn(name = "category_id"),
             inverseJoinColumns = @JoinColumn(name = "beer_id"))
-    private Set<Beer> beers;
+    private Set<Beer> beers = new HashSet<>();
 
 //Sure! Imagine you have two things: categories of beer and different types of beer.
 // Now, sometimes a category of beer can have many different types of beer,
