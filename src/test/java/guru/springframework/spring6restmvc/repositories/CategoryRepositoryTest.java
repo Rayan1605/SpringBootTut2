@@ -33,7 +33,7 @@ class CategoryRepositoryTest {
 
         testbeer.addCategory(savedCat);
         Beer savedBeer = beerRepository.save(testbeer);
-        assertNotNull(savedBeer);
+        System.out.println(savedBeer.getBeerName());
     }
 
 
