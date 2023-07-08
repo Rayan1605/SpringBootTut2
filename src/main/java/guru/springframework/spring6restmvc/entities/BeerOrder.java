@@ -68,7 +68,30 @@ private Long version;
 @OneToMany(mappedBy = "beerOrder") // one order to many order lines
     private Set<BeerOrderLine> beerOrderLineSet;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
+    //cascade refers to the behavior that occurs when a certain operation is performed
+    // on a parent entity, and how it affects the associated child entities.
+    //
+    //Imagine you have two entities: a parent entity and a child entity.
+    // The parent entity has a relationship with the child entity,
+    // such as a one-to-one, one-to-many, or many-to-many relationship.
+    //
+    //Cascade operations define what should happen to the child entities when certain
+    // operations are performed on the parent entity. These operations typically include:
+    //
+    //Persist (or Save): When the parent entity is saved to the database, cascade can ensure that the associated child entities
+    // are also saved automatically.
+    //
+    //Merge: When changes are made to the parent entity and the changes are merged into the database, cascade can propagate
+    // those changes to the associated child entities as well.
+    //
+    //Remove (or Delete): When the parent entity is deleted from the database, cascade can ensure that the associated
+    // child entities are also deleted.
+    //
+    //Refresh: When the parent entity is refreshed from the database, cascade can refresh the associated child entities as well.
+    //
+    //Detach: When the parent entity is detached from the persistence context (usually when it's no longer actively managed),
+    // cascade can detach the associated child entities as well.
     private BeerOrderShipment beerOrderShipment;
 
 

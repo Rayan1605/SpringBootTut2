@@ -2,6 +2,7 @@ package guru.springframework.spring6restmvc.repositories;
 
 import guru.springframework.spring6restmvc.entities.Beer;
 import guru.springframework.spring6restmvc.entities.BeerOrder;
+import guru.springframework.spring6restmvc.entities.BeerOrderShipment;
 import guru.springframework.spring6restmvc.entities.Customer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,7 +33,8 @@ testBeer = beerRepository.findAll().get(0);
 @Transactional
     @Test
     void testBeerOrder(){
-BeerOrder beerOrder = BeerOrder.builder().customerRef("Test Order").customer(testCustomer).build();
+BeerOrder beerOrder = BeerOrder.builder().customerRef("Test Order").customer(testCustomer)
+        .beerOrderShipment(BeerOrderShipment.builder().trackingNumber("12345r").build()).build();
 
 BeerOrder savedBeerOrder = beerOrderRepository.saveAndFlush(beerOrder);
 //his method is responsible for saving changes made to an object and immediately flushing them to the underlying database.
