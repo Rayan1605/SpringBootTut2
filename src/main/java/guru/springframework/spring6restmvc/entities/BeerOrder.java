@@ -16,7 +16,6 @@ import java.util.UUID;
 @Setter
 @Entity
 @NoArgsConstructor
-
 @Builder
 public class BeerOrder {
     public BeerOrder(UUID id, Long version, Timestamp created_date, Timestamp lastModifiedDate, String customerRef, Customer customer, Set<BeerOrderLine> beerOrderLineSet,
