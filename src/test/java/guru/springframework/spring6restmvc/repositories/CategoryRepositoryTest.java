@@ -24,7 +24,6 @@ class CategoryRepositoryTest {
     }
 
 
-
     @Test
     void testAddCategory(){
         Category savedCat = categoryRepository.save(Category.builder().
